@@ -11,63 +11,80 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
+  TextInput,
   View,
   Text,
   StatusBar,
 } from 'react-native';
+import {connect} from 'react-redux';
+import { GET_USER } from './src/actions/userAction';
+import {Button} from './src/components/Button';
+import { flatMap } from 'rxjs/operators';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import { AppContainer } from './src/navigations';
 
-const App = () => {
-  return (
-    <AppContainer />
-  );
-};
+class App extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state= {
+      userName : ''
+    }
+  }
+
+  tirggerGetUser = ()=>{
+      if(this.state.userName!=''){
+        this.props.getUser(this.state.userName)
+      }else{
+        alert(
+          "enter user name"
+        )
+      }
+  }
+  
+  render(){
+    return (<SafeAreaView style={styles.container}>
+      <TextInput 
+      style={{width : '90%',height : 50,borderWidth : 1,borderColor : 'black',margin : 16}}
+      onChangeText={(text)=>{
+        this.setState({
+          userName : text
+        })
+      }}
+      placeholder='enter state'
+      />
+      <Text>
+        {JSON.stringify(this.props.userState)}
+      </Text>
+      <Button 
+      style={{backgroundColor : 'yellow'}}
+        title='Get User'
+       onPress={()=> this.tirggerGetUser()}/>
+    </SafeAreaView>)
+  }
+}
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
+container : {
+  flex:1,
+  justifyContent : 'center',
+  alignItems : 'center'
+}
 });
 
-export default App;
+const mapStateToProps = (props) => {
+  return {
+    userState : props.userState,
+    isLoading : props.userState.isLoading
+  }
+}
+
+const mapStateToDispatch = (dispatch) => {
+  return {
+    getUser : (userName) => {
+      dispatch({type : GET_USER, userName : userName})
+    }
+  }
+}
+
+
+export default connect(mapStateToProps,mapStateToDispatch)(App);

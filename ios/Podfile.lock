@@ -217,11 +217,11 @@ PODS:
     - React-cxxreact (= 0.61.4)
     - React-jsi (= 0.61.4)
     - ReactCommon/jscallinvoker (= 0.61.4)
-  - RNGestureHandler (1.5.1):
+  - RNGestureHandler (1.5.2):
     - React
   - RNReanimated (1.4.0):
     - React
-  - RNScreens (2.0.0-alpha.13):
+  - RNScreens (2.0.0-alpha.18):
     - React
   - Yoga (1.14.0)
 
@@ -346,11 +346,11 @@ SPEC CHECKSUMS:
   React-RCTText: 21934e0a51d522abcd0a275407e80af45d6fd9ec
   React-RCTVibration: 0f76400ee3cec6edb9c125da49fed279340d145a
   ReactCommon: a6a294e7028ed67b926d29551aa9394fd989c24c
-  RNGestureHandler: 7add966bb5d90ee8cf38d4341f87814474357972
+  RNGestureHandler: 946a7691e41df61e2c4b1884deab41a4cdc3afff
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
-  RNScreens: 3a9ec369c7608d36f037bd14340a95a005f3f9d5
+  RNScreens: 5a7b407132e42765bb136932d2a84bdb90c3ef33
   Yoga: ba3d99dbee6c15ea6bbe3783d1f0cb1ffb79af0f
 
 PODFILE CHECKSUM: a0328d3cb1ac6f9c8939439c353e30f66a014c14
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.8.3
